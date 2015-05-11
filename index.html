@@ -1,23 +1,66 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="myApp">
     <head lang="en">
         <meta charset=utf-8>
-        <title>Slider</title>
+        <title>Listing Page</title>
         <link rel="stylesheet" type="text/css" href="resources/css/normalize.css">
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
         <link rel="stylesheet" type="text/css" href="resources/css/style.css">
         <link rel="stylesheet" type="text/css" href="resources/css/mediaqueries.css">
-        <script>
-
-        </script>
     </head>
 
     <body>    
-        
+        <div class="l-container l-container--spacing l-container--position">
+            <div ng-controller="ProductsCtrl">
+                <div class="listing-section">
+                    <div class="listing__items" ng-repeat="item in products.items">
+                        <img class="listing__items__img" src="http://lorempixel.com/25/25/" alt="img">
+                        <p class="listing__items__title">{{item.title}}</p>
+                        <p class="listing__items__price">{{item.price}}$</p>
+                        <button class="listing__items__btn">Add to cart</button>
+                    </div>
+                </div><!--
+                --><div class="aside-commands">
+                    <div class="filter-box">
+                        <h2>filters</h2>
+                        <div class="filter__first-section">
+                            <label>Category:</label>
+                            <select class="filter__first-section__select">
+                                <option value="Options">Options</option>
+                            </select>
+                        </div>
+                        <div data-role="main" class="ui-content">
+                            <form method="post" action="demoform.asp">
+                              <div data-role="rangeslider">
+                                <label for="price-min">Price range:</label>
+                                <input type="range" name="price-min" id="price-min" value="5" min="5" max="600">
+                                <label for="price-max">Price:</label>
+                                <input type="range" name="price-max" id="price-max" value="600" min="5" max="600">
+                              </div>                 
+                            </form>
+                        </div>
+                    </div>
+                    <div class="cart-box">
+                        <h2>Cart</h2>
+                        <div class="cart__product">
+                            <p class="cart__product__title">Adidasi Mike</p>
+                            <div class="cart__product__price">40$</div>
+                        </div>
+                        <div class="cart__total">
+                            <p>Total</p>
+                            <div class="cart__total__price">40$</div>
+                        </div>
+                        <button class="listing__items__btn">Buy it!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.14/angular-ui-router.js"></script>
         <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <script src="resources/js/script.js"></script>
     </body>
     
