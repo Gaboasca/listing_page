@@ -10,55 +10,60 @@
     </head>
 
     <body>    
-        <div class="l-container l-container--spacing l-container--position">
-            <div ng-controller="ProductsCtrl">
-                <div class="listing-section">
-                    <div class="listing__items" ng-repeat="item in products.items">
-                        <img class="listing__items__img" src="http://lorempixel.com/25/25/" alt="img">
-                        <p class="listing__items__title">{{item.title}}</p>
-                        <p class="listing__items__price">{{item.price}}$</p>
-                        <button class="listing__items__btn">Add to cart</button>
+        <div class="l-container l-container--spacing l-container--position" ng-controller="ProductsCtrl"   >
+            <div class="listing-section">
+                <div class="listing__items" ng-repeat="item in products.items | filter:searched_item | limitTo: myLimit">
+                    <img class="listing__items__img" src="http://lorempixel.com/25/25/" alt="img">
+                    <p class="listing__items__title" ng-model="title">{{item.title}}</p>
+                    <p class="listing__items__price" ng-model="price">{{item.price}}$</p>
+                    <input type="button" value="Add to cart"class="listing__items__btn" ng-click="addProduct(item.title, item.price)">
+                </div>
+                <div class="loader">
+                    <img src="resources/img/example_loading.gif" ng-show="myLimit < products.items.length">
+                </div>
+            </div>
+
+            <div class="aside-commands">
+                <div class="filter-box">
+                    <h2>filters</h2>
+                    <div class="filter__first-section">
+                        <label>Category:</label>
+
+                        <select class="filter__first-section__select" ng-model="searched_item">
+                            <option value="">-- No Filter --</option>
+                            <option>Cars</option>
+                            <option>Fruits</option>
+                            <option>Toys</option>
+                        </select>
                     </div>
-                </div><!--
-                --><div class="aside-commands">
-                    <div class="filter-box">
-                        <h2>filters</h2>
-                        <div class="filter__first-section">
-                            <label>Category:</label>
-                            <select class="filter__first-section__select">
-                                <option value="Options">Options</option>
-                            </select>
-                        </div>
-                        <div data-role="main" class="ui-content">
-                            <form method="post" action="demoform.asp">
-                              <div data-role="rangeslider">
-                                <label for="price-min">Price range:</label>
-                                <input type="range" name="price-min" id="price-min" value="5" min="5" max="600">
-                                <label for="price-max">Price:</label>
-                                <input type="range" name="price-max" id="price-max" value="600" min="5" max="600">
-                              </div>                 
-                            </form>
-                        </div>
+                    <div data-role="main" class="ui-content">
+                        <form method="post" action="demoform.asp">
+                          <div data-role="rangeslider">
+                            <label for="price-min">Price range:</label>
+                            <input type="range" name="price-min" id="price-min" value="5" min="5" max="600">
+                            <label for="price-max">Price:</label>
+                            <input type="range" name="price-max" id="price-max" value="600" min="5" max="600">
+                          </div>                 
+                        </form>
                     </div>
-                    <div class="cart-box">
-                        <h2>Cart</h2>
-                        <div class="cart__product">
-                            <p class="cart__product__title">Adidasi Mike</p>
-                            <div class="cart__product__price">40$</div>
-                        </div>
-                        <div class="cart__total">
-                            <p>Total</p>
-                            <div class="cart__total__price">40$</div>
-                        </div>
-                        <button class="listing__items__btn">Buy it!</button>
+                </div>
+                <div class="cart-box">
+                    <h2>Cart</h2>
+                    <div class="cart__product" ng-repeat="">
+                        <p class="cart__product__title"></p>
+                        <div class="cart__product__price">$</div>
                     </div>
+                    <div class="cart__total">
+                        <p>Total</p>
+                        <div class="cart__total__price">{{ getTotal() }}$</div>
+                    </div>
+                    <button class="listing__items__btn">Buy it!</button>
                 </div>
             </div>
         </div>
 
 
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.14/angular-ui-router.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
         <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <script src="resources/js/script.js"></script>
