@@ -7,15 +7,16 @@
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
         <link rel="stylesheet" type="text/css" href="resources/css/style.css">
         <link rel="stylesheet" type="text/css" href="resources/css/mediaqueries.css">
+        <link rel="stylesheet" type="text/css" media="all" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
     </head>
 
     <body>    
-        <div class="l-container l-container--spacing l-container--position" ng-controller="ProductsCtrl"   >
+        <div class="l-container l-container--spacing l-container--position" ng-controller="ProductsCtrl">
             <div class="listing-section">
-                <div class="listing__items" ng-repeat="item in products.items | filter:searched_item | limitTo: myLimit">
-                    <img class="listing__items__img" src="http://lorempixel.com/25/25/" alt="img">
-                    <p class="listing__items__title" ng-model="title">{{item.title}}</p>
-                    <p class="listing__items__price" ng-model="price">{{item.price}}$</p>
+                <div class="listing__items" ng-repeat="item in products.items | filter: searched_item | limitTo: myLimit">
+                    <img class="listing__items__img" src="http://lorempixel.com/176/176/" alt="img">
+                    <p class="listing__items__title" ng-model="item.title">{{item.title}}</p>
+                    <span class="listing__items__price" ng-model="item.price">{{item.price}}$</span>
                     <input type="button" value="Add to cart"class="listing__items__btn" ng-click="addProduct(item.title, item.price)">
                 </div>
                 <div class="loader">
@@ -28,30 +29,20 @@
                     <h2>filters</h2>
                     <div class="filter__first-section">
                         <label>Category:</label>
-
                         <select class="filter__first-section__select" ng-model="searched_item">
                             <option value="">-- No Filter --</option>
                             <option>Cars</option>
                             <option>Fruits</option>
                             <option>Toys</option>
                         </select>
-                    </div>
-                    <div data-role="main" class="ui-content">
-                        <form method="post" action="demoform.asp">
-                          <div data-role="rangeslider">
-                            <label for="price-min">Price range:</label>
-                            <input type="range" name="price-min" id="price-min" value="5" min="5" max="600">
-                            <label for="price-max">Price:</label>
-                            <input type="range" name="price-max" id="price-max" value="600" min="5" max="600">
-                          </div>                 
-                        </form>
-                    </div>
+                    </div>                  
                 </div>
+                
                 <div class="cart-box">
                     <h2>Cart</h2>
-                    <div class="cart__product" ng-repeat="">
-                        <p class="cart__product__title"></p>
-                        <div class="cart__product__price">$</div>
+                    <div class="cart__product" ng-repeat="product in myCart.myProducts">
+                        <p class="cart__product__title">{{product.title}}</p>
+                        <div class="cart__product__price">{{product.price}}</div>
                     </div>
                     <div class="cart__total">
                         <p>Total</p>
@@ -63,9 +54,10 @@
         </div>
 
 
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
         <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.14/angular-ui-router.js"></script>
+        <script src="resources/js/controllers.js"></script>
         <script src="resources/js/script.js"></script>
     </body>
     

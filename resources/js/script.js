@@ -1,7 +1,4 @@
-var myApp = angular.module('myApp', []);
-
 myApp.factory('Products', function() {
-	var filters = {};
 	var Products = {};
 
 	Products.items = [
@@ -148,31 +145,5 @@ myApp.factory('Products', function() {
 	];
 	return Products;
 }) 
-
-myApp.controller("ProductsCtrl", function ($scope, Products) {
-	$scope.myLimit = 16;
-	$scope.products = Products;
-
-	$scope.cart = [];
-
-	$scope.increaseLimit = function () {
-		$scope.myLimit += 8;
-	}
-
-	$scope.addProduct = function (title, price) {
-		
-	}
-
-	$scope.getTotal = function () {
-		var total = 0;
-		for(var i = 0; i < $scope.products.items.length; i++){
-	        var product = $scope.products.items[i];
-	        total += (parseInt(product.price));
-	    }
-	    return total;
-	}
-}); 
-
-
 
 
