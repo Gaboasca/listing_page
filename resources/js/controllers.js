@@ -1,11 +1,19 @@
 var myApp = angular.module('myApp', ["ui.router"]);
 
-myApp.controller("ProductsCtrl", ['$scope', '$http', '$interval', 'Products', function ($scope, $http, $interval, Products) {
+myApp.controller("ProductsCtrl", ['$scope', '$http', function ($scope, $http) {
 	$scope.myLimit = 16;
-	$scope.products = Products;
+	// $scope.products = Products;
 	$scope.myCart = {
 		myProducts: []
 	};
+
+	$http.get('ajax_get.php')
+		.success(function(data, status, headers, config) {
+			$scope.products = data;
+		})
+		.error(function(data, status, headers, config) {
+			console.log("_GET error");
+		});
 
 	$scope.addToCart = function (title, price) {
 		if ( (title === title) && (price) ) {

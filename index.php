@@ -1,9 +1,3 @@
-<?php
-    require_once("itemsdb.php");
-    $results = $connect->query("SELECT * FROM items ORDER BY id ASC LIMIT 0,16");
-    $count = $connect->query("SELECT * FROM items");
-    $nbr = $count->rowCount();
-?>
 <!DOCTYPE html>
 <html ng-app="myApp">
     <head lang="en">
@@ -19,27 +13,13 @@
     <body ng-controller="ProductsCtrl">    
         <div class="l-container l-container--spacing l-container--position" >
             <div class="listing-section">
-
-                <!-- <div class="listing__items" ng-repeat="item in products.items | filter: searched_item | limitTo: myLimit">
+                <div class="listing__items" ng-repeat="item in products | filter: searched_item">
                     <img class="listing__items__img" src="http://lorempixel.com/176/176/" alt="img">
                     <p class="listing__items__title" ng-model="item.title">{{item.title}}</p>
                     <span class="listing__items__price" ng-model="item.price">{{item.price}}$</span>
                     <input type="button" value="Add to cart"class="listing__items__btn" ng-click="addToCart(item.title, item.price)">
-                </div> -->
-
-                <?php 
-                    while($row = $results->fetch()) {
-                        ?>
-                            <div class="listing__items">
-                                <img class="listing__items__img" src="http://lorempixel.com/176/176/" alt="img">
-                                <p class="listing__items__title" ng-model="item.title"><?php echo $row['title']; ?></p>
-                                <span class="listing__items__price" ng-model="item.price"><?php echo $row['price']; ?>$</span>
-                                <input type="button" value="Add to cart"class="listing__items__btn" ng-click="addToCart(item.title, item.price)">
-                            </div>
-                        <?php
-                    }
-                ?>
-
+                </div>
+      
                 <div class="loader">
                     <img src="resources/img/example_loading.gif" ng-show="myLimit < products.items.length">
                 </div>
