@@ -17,7 +17,7 @@ body {
 
 .l-container {
 	width: 85%;
-	height: 100%;
+	
   	margin: 0 auto;
 }
 
@@ -27,7 +27,6 @@ body {
 
 .l-container--position {
 	position: relative;
-	overflow: auto;
 }
 
 .listing-section {

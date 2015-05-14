@@ -145,5 +145,3 @@ myApp.factory('Products', function() {
 	];
 	return Products;
 }) 
-
-

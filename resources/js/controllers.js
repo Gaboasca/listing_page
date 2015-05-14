@@ -1,17 +1,13 @@
 var myApp = angular.module('myApp', ["ui.router"]);
 
-myApp.controller("ProductsCtrl", function ($scope, Products) {
+myApp.controller("ProductsCtrl", ['$scope', '$http', '$interval', 'Products', function ($scope, $http, $interval, Products) {
 	$scope.myLimit = 16;
 	$scope.products = Products;
 	$scope.myCart = {
 		myProducts: []
 	};
 
-	// $scope.increaseLimit = function () {
-	// 	$scope.myLimit += 8;
-	// }
-
-	$scope.addProduct = function (title, price) {
+	$scope.addToCart = function (title, price) {
 		if ( (title === title) && (price) ) {
 			$scope.myCart.myProducts.push({title, price});
 		}
@@ -25,4 +21,7 @@ myApp.controller("ProductsCtrl", function ($scope, Products) {
 	    }
 	    return total;
 	};
-}); 
+
+	$scope.buyProduct = function () {
+	}
+}]); 
