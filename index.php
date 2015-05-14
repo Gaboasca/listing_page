@@ -42,14 +42,14 @@
                 <div class="cart-box">
                     <h2>Cart</h2>
                     <div class="cart__product" ng-repeat="product in myCart.myProducts">
-                        <p class="cart__product__title">{{product.title}}</p>
-                        <div class="cart__product__price">{{product.price}}$</div>
+                        <p class="cart__product__title" ng-model="product.title">{{product.title}}</p>
+                        <div class="cart__product__price" ng-model="product.price">{{product.price}}$</div>
                     </div>
                     <div class="cart__total">
                         <p>Total</p>
-                        <div class="cart__total__price">{{ getTotal() }}$</div>
+                        <div class="cart__total__price" ng-model="product.total">{{ getTotal() }}$</div>
                     </div>
-                    <button class="listing__items__btn" ng-click=" buyProduct() ">Buy it!</button>
+                    <button class="listing__items__btn" ng-click="buyProduct(myCart.myProducts)" name="add">Buy it!</button>
                 </div>
             </div>
         </div>

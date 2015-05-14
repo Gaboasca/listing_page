@@ -2,9 +2,7 @@
 require_once("itemsdb.php");
 // $load = htmlentities(strip_tags($_GET['load'])) * 8;
 
-$query = $connect->query("
-	SELECT * FROM items ORDER BY id ASC
-");
+$query = $connect->query("SELECT * FROM items ORDER BY id ASC");
 
 $products = array();
 

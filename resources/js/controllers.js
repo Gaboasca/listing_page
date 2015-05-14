@@ -6,19 +6,22 @@ myApp.controller("ProductsCtrl", ['$scope', '$http', function ($scope, $http) {
 	$scope.myCart = {
 		myProducts: []
 	};
+	$scope.dbCart = {
+		dbProducts: []
+	};
+
 
 	$http.get('ajax_get.php')
 		.success(function(data, status, headers, config) {
 			$scope.products = data;
+
 		})
 		.error(function(data, status, headers, config) {
 			console.log("_GET error");
 		});
 
 	$scope.addToCart = function (title, price) {
-		if ( (title === title) && (price) ) {
-			$scope.myCart.myProducts.push({title, price});
-		}
+		$scope.myCart.myProducts.push({title, price});
 	};
 
 	$scope.getTotal = function () {
@@ -30,6 +33,25 @@ myApp.controller("ProductsCtrl", ['$scope', '$http', function ($scope, $http) {
 	    return total;
 	};
 
-	$scope.buyProduct = function () {
-	}
+	$scope.buyProduct = function (cart) {
+		for(var i= 0 ; i< cart.length ; i++){
+			$scope.dbCart.dbProducts.push( cart[i] );
+			
+			$http.post('ajax_post.php', {
+										titles:cart[i].title, 
+										prices:cart[i].price,
+										total: $scope.getTotal()
+									})
+			.success(function(data, status, headers, config) {
+				console.log("data inserted succesfully");
+			})
+			.error(function(data, status, headers, config) {
+				console.log("_POST error");
+			});
+		}
+		
+		console.log(cart);
+
+		
+	};
 }]); 

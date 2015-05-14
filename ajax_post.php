@@ -1,19 +1,11 @@
 <?php
-require_once("itemsdb.php");
-// $load = htmlentities(strip_tags($_GET['load'])) * 8;
+	require_once("itemsdb.php");
+	$data = json_decode(file_get_contents("php://input")); 
+	$titles = mysql_real_escape_string($data->titles);
+	$prices = mysql_real_escape_string($data->prices);
+	$total = mysql_real_escape_string($data->total);
 
-$query = $connect->query("
-	SELECT * FROM items ORDER BY id ASC
-");
+	$sql = "INSERT INTO cart VALUES('NULL','".$titles."','".$prices."','".$prices."')";
+	$connect->exec($sql);
 
-$products = array();
-
-while($row = $query->fetch()) {
-	$product = array(
-		"id" => $row['id'],
-		"title" => $row['title'],
-		"price" => $row['price'],
-		"category" => $row['category'],
-	);
-	array_push($products, $product);
-}
+?>

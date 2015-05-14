@@ -9,4 +9,3 @@
 		die("Error".$e->getMessage());
 	}
 
-?>
