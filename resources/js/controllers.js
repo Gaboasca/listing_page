@@ -15,6 +15,10 @@ myApp.controller("ProductsCtrl", ['$scope', '$http', function ($scope, $http) {
 			console.log("_GET error");
 		});
 
+	$scope.increaseLimit = function () {
+		$scope.myLimit += 8;
+	};
+
 	$scope.addToCart = function (title, price) {
 		$scope.myCart.myProducts.push({title, price});
 	};
@@ -40,12 +44,6 @@ myApp.controller("ProductsCtrl", ['$scope', '$http', function ($scope, $http) {
 		}
 
 		$scope.myCart.myProducts.length = 0;
-	};
-
-
-
-	$scope.increaseLimit = function () {
-		$scope.myLimit += 8;
 	};
 }]); 
 

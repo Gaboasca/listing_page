@@ -57,9 +57,8 @@
 
         <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>  
+        <script src="resources/js/model.js"></script>
         <script src="resources/js/controllers.js"></script>
-        <script src="resources/js/service.js"></script>
-        <script src="resources/js/script.js"></script>
     </body>
     
 </html>
