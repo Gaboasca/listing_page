@@ -1,15 +1,10 @@
-var myApp = angular.module('myApp', ["ui.router"]);
+var myApp = angular.module('myApp', []);
 
 myApp.controller("ProductsCtrl", ['$scope', '$http', function ($scope, $http) {
-	$scope.myLimit = 16;
-	// $scope.products = Products;
+	$scope.myLimit = 24;
 	$scope.myCart = {
 		myProducts: []
 	};
-	$scope.dbCart = {
-		dbProducts: []
-	};
-
 
 	$http.get('ajax_get.php')
 		.success(function(data, status, headers, config) {
@@ -34,14 +29,8 @@ myApp.controller("ProductsCtrl", ['$scope', '$http', function ($scope, $http) {
 	};
 
 	$scope.buyProduct = function (cart) {
-		for(var i= 0 ; i< cart.length ; i++){
-			$scope.dbCart.dbProducts.push( cart[i] );
-			
-			$http.post('ajax_post.php', {
-										titles:cart[i].title, 
-										prices:cart[i].price,
-										total: $scope.getTotal()
-									})
+		for(var i= 0 ; i< cart.length ; i++){		
+			$http.post('ajax_post.php', { titles:cart[i].title, prices:cart[i].price, total: $scope.getTotal() })
 			.success(function(data, status, headers, config) {
 				console.log("data inserted succesfully");
 			})
@@ -49,9 +38,28 @@ myApp.controller("ProductsCtrl", ['$scope', '$http', function ($scope, $http) {
 				console.log("_POST error");
 			});
 		}
-		
-		console.log(cart);
 
-		
+		$scope.myCart.myProducts.length = 0;
+	};
+
+
+
+	$scope.increaseLimit = function () {
+		$scope.myLimit += 8;
 	};
 }]); 
+
+
+myApp.directive('infiniteScroll', function() {
+	return {
+		restrict: 'A',
+		link: function ($scope) { 
+			$(window).on('scroll', function () {
+				if($(window).scrollTop() == $(document).height() - $(window).height()) {
+					$scope.increaseLimit();
+					$scope.$apply();
+				}
+			});
+		}
+	};
+});
