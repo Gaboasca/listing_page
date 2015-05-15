@@ -44,8 +44,8 @@ myApp.controller("ProductsCtrl", ['$scope', '$http', function ($scope, $http) {
 	    return total;
 	};
 
-	$scope.buyProduct = function (cart) {
-		$http.post('ajax_post.php', {titles: JSON.stringify(cart), total: $scope.getTotal()})
+	$scope.buyProducts = function (cart) {
+		$http.post('ajax_post.php', {carts: JSON.stringify(cart), total: $scope.getTotal()})
 			.success(function(data, status, headers, config) {
 				console.log("data inserted succesfully");
 			})

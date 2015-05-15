@@ -14,7 +14,7 @@
         <div class="l-container l-container--spacing l-container--position" >
             <div class="listing-section">
                 <div class="listing__items" ng-repeat="item in products | filter: searched_item | limitTo: myLimit">
-                    <img class="listing__items__img" src="http://lorempixel.com/176/176/" alt="img">
+                    <img class="listing__items__img" src="{{item.imageUrl}}" alt="img">
                     <p class="listing__items__title">{{item.title}}</p>
                     <span class="listing__items__price">{{item.price}}$</span>
                     <button class="listing__items__btn" ng-click="addToCart(item)">Add to cart</button>
@@ -50,7 +50,7 @@
                         <p>Total</p>
                         <div class="cart__total__price">{{ getTotal() }}$</div>
                     </div>
-                    <button class="listing__items__btn" ng-click="buyProduct(myCart.myProducts)">Buy it!</button>
+                    <button class="listing__items__btn" ng-click="buyProducts(myCart.myProducts)">Buy it!</button>
                 </div>
             </div>
         </div>

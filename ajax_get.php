@@ -12,6 +12,7 @@ while($row = $query->fetch()) {
 		"title" => $row['title'],
 		"price" => $row['price'],
 		"category" => $row['category'],
+		"imageUrl" => $row['url'],
 	);
 	array_push($products, $product);
 }
