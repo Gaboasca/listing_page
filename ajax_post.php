@@ -5,5 +5,5 @@
 	$prices = $data->prices;
 	$total = $data->total;
 
-	$sql = "INSERT INTO cart VALUES('NULL','".$titles."','".$prices."','".$prices."')";
+	$sql = "INSERT INTO cart VALUES('NULL','".$titles."','".$prices."','".$total."')";
 	$connect->exec($sql);

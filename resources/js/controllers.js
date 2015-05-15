@@ -19,34 +19,48 @@ myApp.controller("ProductsCtrl", ['$scope', '$http', function ($scope, $http) {
 		$scope.myLimit += 8;
 	};
 
-	$scope.addToCart = function (title, price) {
-		$scope.myCart.myProducts.push({title, price});
+	$scope.addToCart = function (item) {
+		var i;
+		var myCart = $scope.myCart.myProducts;
+
+		for(i = 0; i < myCart.length; i++) {
+			if(myCart[i].id === item.id) {
+				myCart[i].count += 1;
+				return;
+			}
+		}
+
+		item.count = 1
+		myCart.push(item)
 	};
 
 	$scope.getTotal = function () {
 		var total = 0;
-		for(var i = 0; i < $scope.myCart.myProducts.length; i++){
-	        var product = $scope.myCart.myProducts[i];
-	        total += (parseInt(product.price));
+		var i, product;
+		for(i = 0; i < $scope.myCart.myProducts.length; i++){
+	        product = $scope.myCart.myProducts[i];
+	        total += (parseInt(product.price * product.count));
 	    }
 	    return total;
 	};
 
 	$scope.buyProduct = function (cart) {
-		for(var i= 0 ; i< cart.length ; i++){		
-			$http.post('ajax_post.php', { titles:cart[i].title, prices:cart[i].price, total: $scope.getTotal() })
+		$http.post('ajax_post.php', {titles: JSON.stringify(cart), total: $scope.getTotal()})
 			.success(function(data, status, headers, config) {
 				console.log("data inserted succesfully");
 			})
 			.error(function(data, status, headers, config) {
 				console.log("_POST error");
 			});
-		}
 
-		$scope.myCart.myProducts.length = 0;
+		$scope.myCart.myProducts = [];
+	};
+
+	$scope.remove = function (product) {
+		var index = $scope.myCart.myProducts.indexOf(product);
+		$scope.myCart.myProducts.splice(index, 1);
 	};
 }]); 
-
 
 myApp.directive('infiniteScroll', function() {
 	return {

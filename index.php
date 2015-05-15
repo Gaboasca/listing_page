@@ -17,7 +17,7 @@
                     <img class="listing__items__img" src="http://lorempixel.com/176/176/" alt="img">
                     <p class="listing__items__title">{{item.title}}</p>
                     <span class="listing__items__price">{{item.price}}$</span>
-                    <button class="listing__items__btn" ng-click="addToCart(item.title, item.price)">Add to cart</button>
+                    <button class="listing__items__btn" ng-click="addToCart(item)">Add to cart</button>
                 </div>
       
                 <div class="loader">
@@ -42,8 +42,9 @@
                 <div class="cart-box">
                     <h2>Cart</h2>
                     <div class="cart__product" ng-repeat="product in myCart.myProducts">
-                        <p class="cart__product__title">{{product.title}}</p>
-                        <div class="cart__product__price">{{product.price}}$</div>
+                        <p class="cart__product__title">{{product.title}} <span>x{{product.count}}</span></p>
+
+                        <div class="cart__product__price">{{product.price}}$ <small class="remove" ng-click="remove(product)">[X]</small></div>
                     </div>
                     <div class="cart__total">
                         <p>Total</p>
