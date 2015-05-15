@@ -30,7 +30,7 @@ body {
 }
 
 .listing-section {
-	width: 75%;
+	width: 72%;
 }
 
 	.listing__items {
@@ -39,8 +39,14 @@ body {
 		padding: 10px;
 		margin-right: 10px;
 		margin-bottom: 5px;
-		border: 2px solid #000;
+		border: 1px solid #e3e3e3;
+		box-shadow: 0px 0px 6px #e3e3e3;
 		text-align: right;
+	}
+
+	.listing__items:hover {
+		border: 1px solid #94B84C;
+		box-shadow: 0px 0px 6px rgba(51,102,0, 0.35);
 	}
 
 		.listing__items__img {
@@ -66,16 +72,34 @@ body {
 		.listing__items__btn {
 			display: inherit;
 			width: 100px;
+			padding: 5px 10px 5px 10px;
 			margin: 0 auto;
-			border-radius: 3%;
-			border: 2px solid #000;
-			background-color: #e3e3e3;
+			color: #ffffff;
+			font-size: 15px;
+			font-family: Arial;
+			text-decoration: none;
+			outline: none;
+			border-radius: 28px;
+			background: #3498db;
+			background-image: linear-gradient(to bottom, #3498db, #2980b9);
 		}
 
-		
+		.listing__items__btn:hover {
+			background: #3cb0fd;
+			background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+		}
 
+		.listing__items__btn--cart {
+			display: inline-block;
+			margin: 0 10px 10px 0;
+		}
+		
 		.loader {
 			text-align: center;
+		}
+
+		.ceva{
+			text-align: right;
 		}
 
 
@@ -83,7 +107,7 @@ body {
 	position: absolute;
 	top: 20px;
 	right: 0;
-	width: 300px;
+	width: 20%;
 }
 
 .listing-section,
@@ -98,6 +122,8 @@ body {
 	}
 
 		.filter__first-section {
+			padding-left: 10px;
+			padding-right: 10px;
 			margin-bottom: 30px
 		}
 
@@ -113,12 +139,13 @@ body {
 
 		.cart__product {
 			position: relative;
+			padding-left: 10px;
 		}
 
 			.cart__product__price {
 				position: absolute;
-				top:0;
-				right: 0;
+				top: 0;
+				right: 10px;
 			}
 
 			.remove {
@@ -127,15 +154,28 @@ body {
 			}
 
 		.cart__total {
+			padding-right: 10px;
 			margin: 30px 0 20px 0;
+			text-align: right;
 		}
 
 	.filter-box,
 	.cart-box {
 		display: block;
-		padding: 10px;
-		border: 2px solid #000;
+		border: 1px solid #D6E0EA;
 	}
+
+	.aside__title {
+		padding: 6px 10px 6px 10px;
+		margin: 0;
+		color: #6A6A6A;
+		font-size: 1.6em;
+		font-weight: normal;
+		border-bottom: 1px solid #D6E0EA;
+		background: url('../img/cnt-slight-header-bg-nav.png') 50% top repeat-x;
+	}
+
+
 
 
 

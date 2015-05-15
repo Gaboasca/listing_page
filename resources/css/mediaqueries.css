@@ -1,4 +1,11 @@
-@media screen and (max-width: 1020px) {
-	
+@media screen and (max-width: 1093px) {
+	.aside-commands {
+		  width: 190px;
+	}
+
+	.filter__first-section__select {
+		width: 100%;
+		margin-left: 0;
+	}
 }
 

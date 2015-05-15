@@ -23,11 +23,11 @@
                 <div class="loader">
                     <img src="resources/img/example_loading.gif" ng-show="myLimit < products.items.length">
                 </div>
-            </div>
+            </div><!--
 
-            <div class="aside-commands">
+            --><div class="aside-commands">
                 <div class="filter-box">
-                    <h2>filters</h2>
+                    <h2 class="aside__title aside--spacing">Filters</h2>
                     <div class="filter__first-section">
                         <label>Category:</label>
                         <select class="filter__first-section__select" ng-model="searched_item">
@@ -40,7 +40,7 @@
                 </div>
                 
                 <div class="cart-box">
-                    <h2>Cart</h2>
+                    <h2 class="aside__title">Cart</h2>
                     <div class="cart__product" ng-repeat="product in myCart.myProducts">
                         <p class="cart__product__title">{{product.title}} <span>x{{product.count}}</span></p>
 
@@ -50,7 +50,9 @@
                         <p>Total</p>
                         <div class="cart__total__price">{{ getTotal() }}$</div>
                     </div>
-                    <button class="listing__items__btn" ng-disabled="myCart.myProducts.length==0" ng-click="buyProducts(myCart.myProducts)">Buy it!</button>
+                    <div class="ceva">
+                        <button class="listing__items__btn listing__items__btn--cart" ng-disabled="myCart.myProducts.length==0" ng-click="buyProducts(myCart.myProducts)">Buy it!</button>    
+                    </div>
                 </div>
             </div>
         </div>
