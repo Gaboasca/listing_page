@@ -98,8 +98,27 @@ body {
 			text-align: center;
 		}
 
-		.ceva{
+		.cart-btn{
 			text-align: right;
+		}
+
+		.ui-page-theme-a .ui-btn {
+			color: #fff;
+  			text-shadow: none;
+		}
+
+		#select-8-button {
+			color: #000;
+		}
+
+		#select-8-button.ui-btn {
+			display: inline-block;
+			width: 60%;
+			padding: 0;
+		}
+
+		.ui-btn-icon-right:after {
+			display: none;
 		}
 
 
@@ -174,9 +193,6 @@ body {
 		border-bottom: 1px solid #D6E0EA;
 		background: url('../img/cnt-slight-header-bg-nav.png') 50% top repeat-x;
 	}
-
-
-
 
 
 

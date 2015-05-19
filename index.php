@@ -7,13 +7,13 @@
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
         <link rel="stylesheet" type="text/css" href="resources/css/style.css">
         <link rel="stylesheet" type="text/css" href="resources/css/mediaqueries.css">
-        <link rel="stylesheet" type="text/css" media="all" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
+        
     </head>
 
     <body ng-controller="ProductsCtrl" infinite-scroll="#">    
         <div class="l-container l-container--spacing l-container--position" >
             <div class="listing-section">
-                <div class="listing__items" ng-repeat="item in products | filter: searched_item | limitTo: myLimit">
+                <div class="listing__items" ng-repeat="item in products | filter: searched_item | filter: priceRange | limitTo: myLimit">
                     <img class="listing__items__img" src="{{item.imageUrl}}" alt="img">
                     <p class="listing__items__title">{{item.title}}</p>
                     <span class="listing__items__price">{{item.price}}$</span>
@@ -36,7 +36,19 @@
                             <option>Fruits</option>
                             <option>Toys</option>
                         </select>
-                    </div>                  
+                    </div>  
+                    <div class="filter__second-section">
+                    <div data-role="main" class="ui-content">
+                        <form method="post" action="demoform.asp">
+                            <div data-role="rangeslider">
+                                <label for="price-min">Price:</label>
+                                <input type="range" name="price-min" class="price-min" value="0" min="0" max="600" ng-model="lower_price_bound">
+                                <label for="price-max">Price:</label>
+                                <input type="range" name="price-max" class="price-max" value="600" min="0" max="600" ng-model="upper_price_bound">
+                            </div>
+                        </form>
+                    </div>
+                    </div>                
                 </div>
                 
                 <div class="cart-box">
@@ -50,7 +62,7 @@
                         <p>Total</p>
                         <div class="cart__total__price">{{ getTotal() }}$</div>
                     </div>
-                    <div class="ceva">
+                    <div class="cart-btn">
                         <button class="listing__items__btn listing__items__btn--cart" ng-disabled="myCart.myProducts.length==0" ng-click="buyProducts(myCart.myProducts)">Buy it!</button>    
                     </div>
                 </div>
@@ -59,8 +71,10 @@
 
 
         <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>  
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script> 
         <script src="resources/js/controllers.js"></script>
+        
     </body>
     
 </html>

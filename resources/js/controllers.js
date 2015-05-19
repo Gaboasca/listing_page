@@ -15,6 +15,13 @@ myApp.controller("ProductsCtrl", ['$scope', '$http', function ($scope, $http) {
 			console.log("_GET error");
 		});
 
+	$scope.lower_price_bound = 0;
+  	$scope.upper_price_bound = 600;
+
+	$scope.priceRange = function(item) {
+	    return (parseInt(item['price']) >= $scope.lower_price_bound && parseInt(item['price']) <= $scope.upper_price_bound);
+	};
+
 	$scope.increaseLimit = function () {
 		$scope.myLimit += 8;
 	};
@@ -60,18 +67,6 @@ myApp.controller("ProductsCtrl", ['$scope', '$http', function ($scope, $http) {
 		var index = $scope.myCart.myProducts.indexOf(product);
 		$scope.myCart.myProducts.splice(index, 1);
 	};
-}]); 
 
-myApp.directive('infiniteScroll', function() {
-	return {
-		restrict: 'A',
-		link: function ($scope) { 
-			$(window).on('scroll', function () {
-				if($(window).scrollTop() == $(document).height() - $(window).height()) {
-					$scope.increaseLimit();
-					$scope.$apply();
-				}
-			});
-		}
-	};
-});
+	
+}]); 
